@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.commit
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,13 +71,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
         if(v?.id == R.id.btn_category) {
             val category = CategoryFragment()
             val fragmentManager = parentFragmentManager
-            fragmentManager.beginTransaction().apply {
-                replace(R.id.frame_container, category, CategoryFragment::class.java.simpleName)
+            fragmentManager.commit {
                 addToBackStack(null)
-                commit()
+                replace(R.id.frame_container, category, CategoryFragment::class.java.simpleName)
             }
-
-
         }
     }
 }
